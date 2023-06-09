@@ -1,0 +1,26 @@
+name: scr
+on: [push, pull_request, workflow_dispatch]
+env:
+  glb: ${{ secrets.glb }}
+  chromium: "https://registry.npmmirror.com/-/binary/chromium-browser-snapshots/Linux_x64/1065526/chrome-linux.zip"
+  # inp: ${{ secrets.inp }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # container: dazz111/yfd:latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      # Add your build and test steps here
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        with:
+          detached: true
+          limit-access-to-actor: true
+      - name: Create step
+        # timeout-minutes: 30
+        # continue-on-error: true
+        run: |
+          sleep 20000
+          touch continue
+
